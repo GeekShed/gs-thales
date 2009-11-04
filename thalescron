@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR='/home/unreal/thales/'
+
+cd $DIR
+
+PID=`cat thales.pid`
+
+if [ `/bin/ps ux | /bin/grep 'thales' | /bin/grep -c $PID` = 0 ]; then
+	./thales
+fi

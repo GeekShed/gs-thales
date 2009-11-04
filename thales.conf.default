@@ -1,0 +1,189 @@
+# Configuration file for Thales.
+#
+# The format of this file is fairly simple: a line beginning with a # is a
+# comment, and any other non-blank line is expected to be a directive and
+# parameters, separated by spaces or tabs.  For example:
+#
+#   Directive Parameter-1 Parameter-2 ...
+#
+# Directives are case-insensitive.  Note that some directives do not take
+# any parameters; these are typically "on-off" directives, for which simply
+# including the directive in this file (or removing it) has an effect on
+# Services' functionality.
+#
+# If a parameter's value is a string which includes spaces, enclose the
+# string in double quotation marks, like the example below.  Quotes may be
+# used around any string at all for clarity.
+#
+#   "This is a parameter string with spaces in it"
+#
+# If you need to include a double quote inside a quoted string, precede it
+# by a backslash:
+#
+#   "This string has \"double quotes\" in it"
+#
+# Time parameters can be specified either as an integer representing a
+# number of seconds (e.g. "3600" = 1 hour), or as an integer with a unit
+# specifier: "s" = seconds, "m" = minutes, "h" = hours, "d" = days.
+# Combinations (such as "1h30m") are not permitted.  Examples (all of which
+# represent the same length of time, one day):
+#
+#   "86400", "86400s", "1440m", "24h", "1d"
+#
+# In the documentation for each directive, one of the following will be
+# included to indicate whether an option is required:
+#
+# [REQUIRED]
+#     Indicates a directive which must be given.  Without it, Services will
+#     not start.
+#
+# [RECOMMENDED]
+#     Indicates a directive which may be omitted, but omitting it may cause
+#     undesirable side effects.
+#
+# [OPTIONAL]
+#     Indicates a directive which is optional.  If not given, the feature
+#     will typically be disabled.  If this is not the case, more
+#     information will be given in the documentation.
+#
+# [DISCOURAGED]
+#     Indicates a directive which may cause undesirable side effects if
+#     specified.
+#
+# [DEPRECATED]
+#     Indicates a directive which will disappear in a future version of
+#     Services, usually because its functionality has been either
+#     superseded by that of other directives or incorporated into the main
+#     program.
+
+###########################################################################
+#
+# Remote server configuration
+#
+###########################################################################
+
+# RemoteServer <hostname> <port> <password>  [REQUIRED]
+#     Specifies the remote server hostname and port.  The hostname may
+#     either be a standard Internet hostname or dotted-quad numeric
+#     address; the port number must be an integer between 1 and 65535
+#     inclusive.  The password is a string which should be enclosed in
+#     double quotes if it contains any spaces (or just for clarity).
+
+RemoteServer    localhost 6667 "mypass"
+
+# LocalAddress <hostname> [port]  [OPTIONAL]
+#     Specifies the local address to bind to before connecting to the
+#     remote server.  This may be useful on multihomed hosts.  The hostname
+#     and port number are specified the same way as with the RemoteServer
+#     directive.  If this is not specified, Thales will let the operating
+#     system choose the local address.  If only a hostname is specified,
+#     Thales will bind to that address but let the operating system
+#     choose the local port number.
+#
+#     If you don't know what this means or don't need to use it, just leave
+#     the directive commented out.
+
+#LocalAddress   nowhere. 0
+
+###########################################################################
+#
+# Thales identification
+#
+###########################################################################
+
+# ServerName <name>  [REQUIRED]
+#     Specifies the IRC server name which Services should use.  May be
+#     overridden by the -name command-line option.
+
+ServerName  "thales.lucas.in"
+
+# ServerDesc <text>  [REQUIRED]
+#     Specifies the text which should appear as the server's information in
+#     /whois and similar queries.  May be overridden by the -desc
+#     command-line option.
+
+ServerDesc  "Thales IRC2MySQL Gateway"
+
+###########################################################################
+#
+# MySQL Configuration
+#
+###########################################################################
+
+# MysqlServer <name>  [REQUIRED]
+#     Specifies the address of the MySQL server you want to use.
+#     Should probably stay "localhost"
+
+MysqlServer  "localhost"
+
+# MysqlDatabase <name>  [REQUIRED]
+#     Specifies the name of the MySQL database you want to store data in.
+#     The Database must exist, and the user specified below must have enough
+#     access to it.
+
+MysqlDatabase "thales"
+
+# MysqlUser <name> [REQUIRED]
+#     Username to use when connecting to MySQL
+
+MysqlUser "lucas"
+
+# MysqlPassword <password> [REQUIRED]
+#     Password to use when connecting to MySQL.
+
+MysqlPassword "password"
+
+###########################################################################
+#
+# Thales data filenames
+#
+###########################################################################
+
+# NOTE: All filenames are relative to the Thales directory.
+
+# PIDFile <filename>  [REQUIRED]
+#     Specifies the name of the file containing Services' process ID.
+
+PIDFile     thales.pid
+
+# LogFile <filename> [REQUIRED]
+#     Specifies the name of the log file.
+
+LogFile     thales.log
+
+###########################################################################
+#
+# Cache configuration
+#
+###########################################################################
+
+# Thales is now able to keep nicknames and servers in the tables after they
+# quit/split. Using this feature, you can add a "last seen" function to your
+# web WHOIS system.
+# To disable this feature, set ServerCacheTime and UserCacheTime to 0 (that's
+# the default)
+
+# Number of seconds during which we must keep servers in the server table.
+# Since servers split are uncommon, we keep them for a week.
+
+#ServerCacheTime 604800
+ServerCacheTime 0
+
+# How often (in seconds) to we check for obsoleted servers ?
+
+ServerCleanFreq 60480
+
+# Number of seconds during which we must keep users in the user table.
+# Since users connect/disconnect are very common, we don't keep them for a
+# long time. 2 days looks reasonnable.
+
+#UserCacheTime 172800
+UserCacheTime 0
+
+# How often (in seconds) to we check for obsoleted users ?
+
+UserCleanFreq 3600
+
+# PRIVACY SETTING : Hide +k channels' passwords in the chan table
+
+HidePasswords
