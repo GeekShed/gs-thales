@@ -36,10 +36,10 @@ pkgincludedir = $(includedir)/thales
 
 top_builddir = ..
 
-ACLOCAL = aclocal-1.4
-AUTOCONF = autoconf
-AUTOMAKE = automake-1.4
-AUTOHEADER = autoheader
+ACLOCAL = /home/wamphyre/thales/missing aclocal-1.4
+AUTOCONF = /home/wamphyre/thales/missing autoconf
+AUTOMAKE = /home/wamphyre/thales/missing automake-1.4
+AUTOHEADER = /home/wamphyre/thales/missing autoheader
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL} $(AM_INSTALL_PROGRAM_FLAGS)
@@ -61,9 +61,9 @@ HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
 LN_S = ln -s
 LTLIB = @LTLIB@
-MAKEINFO = makeinfo
+MAKEINFO = /home/wamphyre/thales/missing makeinfo
 PACKAGE = thales
-VERSION = 1.0-gs
+VERSION = 1.0
 
 bin_PROGRAMS = thales
 thales_SOURCES = main.c log.c log.h thales.h conf.c conf.h compat.c compat.h misc.c misc.h defs.h send.c send.h sockutil.c sockutil.h messages.c messages.h process.c process.h memory.c memory.h db.c db.h actions.c actions.h hashlist.c hashlist.h
@@ -230,25 +230,6 @@ distdir: $(DISTFILES)
 	    || cp -p $$d/$$file $(distdir)/$$file || :; \
 	  fi; \
 	done
-actions.o: actions.c thales.h defs.h config.h actions.h db.h log.h \
-	send.h misc.h compat.h memory.h sockutil.h
-compat.o: compat.c thales.h defs.h config.h
-conf.o: conf.c conf.h thales.h defs.h config.h log.h misc.h compat.h
-db.o: db.c db.h thales.h defs.h config.h log.h misc.h actions.h \
-	hashlist.h
-hashlist.o: hashlist.c hashlist.h log.h thales.h defs.h config.h
-log.o: log.c thales.h defs.h config.h log.h misc.h send.h
-main.o: main.c thales.h defs.h config.h conf.h log.h send.h sockutil.h \
-	compat.h memory.h process.h db.h
-memory.o: memory.c thales.h defs.h config.h memory.h log.h
-messages.o: messages.c thales.h defs.h config.h messages.h send.h misc.h \
-	compat.h memory.h log.h actions.h sockutil.h
-misc.o: misc.c thales.h defs.h config.h misc.h
-process.o: process.c thales.h defs.h config.h process.h messages.h \
-	memory.h log.h misc.h
-send.o: send.c thales.h defs.h config.h send.h sockutil.h log.h
-sockutil.o: sockutil.c thales.h defs.h config.h log.h
-
 info-am:
 info: info-am
 dvi-am:

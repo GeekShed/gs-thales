@@ -36,10 +36,10 @@ pkgincludedir = $(includedir)/thales
 
 top_builddir = .
 
-ACLOCAL = aclocal-1.4
-AUTOCONF = autoconf
-AUTOMAKE = automake-1.4
-AUTOHEADER = autoheader
+ACLOCAL = /home/wamphyre/thales/missing aclocal-1.4
+AUTOCONF = /home/wamphyre/thales/missing autoconf
+AUTOMAKE = /home/wamphyre/thales/missing automake-1.4
+AUTOHEADER = /home/wamphyre/thales/missing autoheader
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL} $(AM_INSTALL_PROGRAM_FLAGS)
@@ -61,7 +61,7 @@ HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
 LN_S = ln -s
 LTLIB = @LTLIB@
-MAKEINFO = makeinfo
+MAKEINFO = /home/wamphyre/thales/missing makeinfo
 PACKAGE = thales
 VERSION = 1.0
 

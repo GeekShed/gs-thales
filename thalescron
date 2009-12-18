@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR='/home/unreal/thales/'
+DIR='/home/wamphyre/thales/'
 
 cd $DIR
 

@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS ison;
 DROP TABLE IF EXISTS server;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS maxvalues;
+DROP TABLE IF EXISTS topics;
 
 CREATE TABLE chan (
   chanid int unsigned NOT NULL auto_increment,
@@ -126,4 +127,14 @@ CREATE TABLE maxvalues (
   val int unsigned NOT NULL default '0',
   time datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY(type)
+) TYPE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS `topics` (
+  `topicid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `channel` varchar(32) NOT NULL,
+  `topic` text NOT NULL,
+  `author` varchar(30) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`topicid`),
+  UNIQUE KEY `channel` (`channel`,`timestamp`)
 ) TYPE=MyISAM;
